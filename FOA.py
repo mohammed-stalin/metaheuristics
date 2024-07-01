@@ -51,7 +51,7 @@ def local_search(route, city_locations):
                 best_distance = new_distance
     return best_route
 
-def update_falcon_positions(population, city_locations, alpha, beta, p_a, p_d):
+def update_falcon_positions(population, city_locations, beta, p_a, p_d):
     """Updates falcon positions based on exploration, exploitation, and agility."""
     new_population = []
     for falcon in population:
@@ -95,8 +95,7 @@ def main():
 
     # FOA parameters (adjust these as needed)
     num_falcons = 50
-    alpha = 2  # Levy flight parameter for exploration
-    beta = 2  # Levy flight parameter for exploitation
+    beta = 2  # Levy flight parameter for exploration
     p_a = 0.7  # Probability of exploitation
     p_d = 0.4  # Probability of agility
 
@@ -120,7 +119,7 @@ def main():
                 best_fitness = fitness
 
         # Update falcon positions
-        population = update_falcon_positions(population, city_locations, alpha, beta, p_a, p_d)
+        population = update_falcon_positions(population, city_locations, beta, p_a, p_d)
 
         # Recalculate fitness after updating positions
         fitness_values = [calculate_fitness(permutation, city_locations) for permutation in population]
